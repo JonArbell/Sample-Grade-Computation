@@ -22,7 +22,7 @@ public void main(String... args){
 
         var scores = getScores(gradeComponents, weightMap, scanner);
 
-        var finalGrade = (int) Math.round(scores.values().stream().mapToDouble(Double::doubleValue).sum());
+        var finalGrade = Math.round(scores.values().stream().mapToDouble(Double::doubleValue).sum());
 
         System.out.printf("Final Grade: %d",finalGrade);
     }catch (NumberFormatException e) {
