@@ -7,7 +7,8 @@ public void main(String... args){
         var gradeComponents = Arrays.asList(
                 new GradeComponent("Written Work", "a"),
                 new GradeComponent("Performance Task", "b"),
-                new GradeComponent("Quarterly Assessment", "c")
+                new GradeComponent("Quarterly Assessment", "c"),
+                new GradeComponent("Kasipsipan","d")
         );
 
         display(gradeComponents);
