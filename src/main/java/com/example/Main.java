@@ -70,7 +70,7 @@ private Map<String, Double> parseFormula(String formula) {
 
     var specialMatcher = Pattern.compile("(?<!\\()\\b(\\d+)\\b(?!%)").matcher(formula);
 
-    while (specialMatcher.find()){
+    if (specialMatcher.find()){
         var special = Double.parseDouble(specialMatcher.group(1));
         weightMap.put("special", special);
     }
