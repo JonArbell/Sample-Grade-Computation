@@ -20,7 +20,7 @@ The session will be hosted by Frace Marteja, the owner of the Saksi Ni Java face
 
 2. **Navigate to the project folder:**
 
-```cd Activity```
+```cd Sample-Grade-Computation```
 
 3. **Compile and run the program:**
 
