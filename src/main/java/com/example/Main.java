@@ -21,7 +21,7 @@ public void main(String... args){
 
         var scores = getScores(gradeComponents, weightMap, scanner);
 
-        var finalGrade = (int) scores.values().stream().mapToDouble(Double::doubleValue).sum();
+        var finalGrade = (int) Math.round(scores.values().stream().mapToDouble(Double::doubleValue).sum());
 
         System.out.printf("Final Grade: %d",finalGrade);
     }catch (NumberFormatException e) {
@@ -71,8 +71,6 @@ private Map<String, Double> parseFormula(String formula) {
 
     while (specialMatcher.find()){
         var special = Double.parseDouble(specialMatcher.group(1));
-
-        System.out.println("Special : "+special);
         weightMap.put("special", special);
     }
 
