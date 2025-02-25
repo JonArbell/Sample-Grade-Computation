@@ -17,9 +17,9 @@ public void main(String... args){
 
         var weightMap = parseFormula(formula);
 
-        System.out.print("Input scores:");
+        System.out.println("Input scores:");
 
-        var scores = getScoresFromUser(gradeComponents, weightMap, scanner);
+        var scores = getScores(gradeComponents, weightMap, scanner);
 
         var finalGrade = (int) scores.values().stream().mapToDouble(Double::doubleValue).sum();
 
@@ -34,7 +34,7 @@ public void main(String... args){
 
 }
 
-private Map<String, Double> getScoresFromUser(
+private Map<String, Double> getScores(
         List<GradeComponent> gradeComponents,
         Map<String, Double> weightMap,
         Scanner scanner){
@@ -57,7 +57,7 @@ private Map<String, Double> getScoresFromUser(
 
 private double finalGrade(GradeComponent gradeComponent, double grade, Scanner scanner){
 
-    System.out.printf("\n%s [0 - 100]: ",gradeComponent.getName());
+    System.out.printf("%s [0 - 100]: ",gradeComponent.getName());
     var score = scanner.nextInt();
     return grade * score;
 
