@@ -18,7 +18,7 @@ A simple Java program for computing grades based on user-defined formulas. This 
 
 2. **Navigate to the project folder:**
 
-```cd sample-grade-computation```
+```cd Activity```
 
 3. **Compile and run the program:**
 
