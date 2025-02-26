@@ -35,6 +35,31 @@ public void main(String... args){
 
 }
 
+private Matcher createMatcher(String pattern, String formula){
+    return Pattern.compile(pattern).matcher(formula);
+}
+
+private Map<String, Double> parseFormula(String formula) {
+
+    var weightMap = new HashMap<String, Double>();
+
+    var specialMatcher = createMatcher("(?<!\\()\\b(\\d+)\\b(?!%)", formula);
+
+    if (specialMatcher.find()){
+        var special = Double.parseDouble(specialMatcher.group(1));
+        weightMap.put("special", special);
+    }
+
+    var matcher = createMatcher("\\((\\w+)\\s*\\*\\s*(\\d+)%\\)", formula);
+
+    while (matcher.find()) {
+        double percentToDecimal = Double.parseDouble(matcher.group(2)) / 100;
+        weightMap.put(matcher.group(1), percentToDecimal);
+    }
+
+    return weightMap;
+}
+
 private Map<String, Double> getScores(
         List<GradeComponent> gradeComponents,
         Map<String, Double> weightMap,
@@ -60,29 +85,8 @@ private double finalGrade(GradeComponent gradeComponent, double grade, Scanner s
 
     System.out.printf("%s [0 - 100]: ",gradeComponent.getName());
     var score = scanner.nextInt();
-    return grade * score;
+    return score * grade;
 
-}
-
-private Map<String, Double> parseFormula(String formula) {
-
-    var weightMap = new HashMap<String, Double>();
-
-    var specialMatcher = Pattern.compile("(?<!\\()\\b(\\d+)\\b(?!%)").matcher(formula);
-
-    if (specialMatcher.find()){
-        var special = Double.parseDouble(specialMatcher.group(1));
-        weightMap.put("special", special);
-    }
-
-    var matcher = Pattern.compile("\\((\\w+)\\s*\\*\\s*(\\d+)%\\)").matcher(formula);
-
-    while (matcher.find()) {
-        double percentToDecimal = Double.parseDouble(matcher.group(2)) / 100;
-        weightMap.put(matcher.group(1), percentToDecimal);
-    }
-
-    return weightMap;
 }
 
 private void display(List<GradeComponent> components){
